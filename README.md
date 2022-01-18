@@ -47,7 +47,7 @@ OBS: Toda variável que for usada dentro do useEffect deve estar dentro de seu a
 
 useEffect(() => {
   return () => {
-
+    // Função a ser executada
   }
 }, [])
 ```
