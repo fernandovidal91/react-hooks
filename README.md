@@ -14,7 +14,6 @@ function handleMinus() {
 
 # useEffect
 
-
 ```
 // Executa toda vez que o componente é montado em tela.
 
@@ -51,3 +50,63 @@ useEffect(() => {
   }
 }, [])
 ```
+
+
+# useContext
+
+```
+import { useState, createContext, useContext } from "react";
+
+const ThemeContext = createContext();
+
+export default function UseContext() {
+  const [mode, setMode] = useState('light');
+
+  function handleTheme() {
+    setMode((prevState) => (
+      prevState === 'light'
+        ? 'dark'
+        : 'light'
+    ));
+  }
+
+  const darkMode = {
+    background: 'black',
+    color: 'white',
+  }
+
+  const lightMode = {
+    background: 'white',
+    color: 'black',
+  }
+
+  return (
+    <>
+      <ThemeContext.Provider value={{ mode }}>
+        <button
+          onClick={handleTheme}
+          style={mode === 'dark' ? darkMode : lightMode}
+        >
+          Mudar Tema
+        </button>
+        <Theme />
+      </ThemeContext.Provider>
+    </>
+  );
+}
+
+function Theme() {
+  const { mode } = useContext(ThemeContext);
+
+  return (
+    <>
+      <p>Tema atual: <b>{mode}</b></p>
+    </>
+  )
+}
+```
+
+
+
+
+
